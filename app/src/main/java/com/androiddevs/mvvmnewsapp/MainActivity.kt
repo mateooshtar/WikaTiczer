@@ -2,6 +2,7 @@ package com.androiddevs.mvvmnewsapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Phone
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
@@ -10,32 +11,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var stefanMatematyk = lambda(10,50) {
-            x,y -> (x+y).toString()
-        }
+        var stefek = Person("Stefan", "Brzęczyszczykiewicz", 502175684)
+        stefek.whoAreYou()
+    }
+}
 
-        println(stefanMatematyk)
 
-        var table = listOf(1,2,3,4,5)
+abstract class Person {
 
-        table.forEach{item ->
-            var i = item * item
-            for (x in 1..10) {
-                println("$i huehueeeee")
-            }
-        }
+    abstract var name: String
+    abstract var surname: String
+    abstract var phone: Long
+    abstract var gender: String
 
 
 
+    fun whoAreYou() {
+        return println("Siema, jestem $name $surname. Mój nr telefonu to $phone")
     }
 
+    abstract fun setGender(genderToSet: String) : String
+    abstract fun getGender() : Int
+    abstract fun goPee() : String
 
-    fun lambda(a: Int, b: Int, c: (Int,Int) -> String) : String {
-        return ("$a + $b = ${a+b}. ${c(a, b)}")
-    }
+}
 
-    var add = { a: Int, b: Int -> a - b }
-
-
+class Man(name: String, surname:String, gender: String) {
 
 }
